@@ -1,11 +1,13 @@
 import React, { useEffect } from 'react';
 import HomePage from './components/HomePage/HomePage';
-import Episodes from './components/Episodes/Episodes';
+import Character from './components/Character/Character';
+import { Page404 } from './components/Page404/Page404';
 import { useDispatch } from "react-redux";
 import { GlobalStyleReset } from "./styles/CssReset";
 import { ThemeProvider } from "styled-components";
 import { getData } from "./actions/index";
-import { Redirect, Route, Switch } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
+import history from "./history";
 import theme from "./styles/Themes";
 import axios from "axios";
 
@@ -20,7 +22,9 @@ export const App: React.FC = () => {
         );
         dispatch(getData(response.data.results));
       } catch (error) {
-        console.log(error);
+        history.push({
+          pathname: '/404'
+        });
       }
     };
     fetchData();
@@ -31,8 +35,8 @@ export const App: React.FC = () => {
       <GlobalStyleReset />
       <Switch>
         <Route exact path="/" render={() => <HomePage />} />
-        <Route path="/characters/:id" render={() => <Episodes />} />
-        <Route path="*" render={() => <Redirect to={{ path: "/" }} />} />
+        <Route path="/characters/:id" render={() => <Character />} />
+        <Route path="" render={() => <Page404 />} />
       </Switch>
     </ThemeProvider>
   );

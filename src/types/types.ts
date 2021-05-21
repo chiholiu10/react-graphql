@@ -10,6 +10,9 @@ export interface IProps {
 }
 
 export interface InputProps {
-  value: any,
+  value: string,
   onChange: any;
+  loaded: boolean;
+  triggerPosY: boolean;
 }
+

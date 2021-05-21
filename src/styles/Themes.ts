@@ -5,7 +5,10 @@ const theme: DefaultTheme = {
   colors: {
     black: "#000000",
     white: "#FFFFFF",
-    grey: "#535353"
+    grey: "#535353",
+    lightGrey: "#d3d3d3",
+    darkGrey: "#7B7C7C",
+    outline: "#1E90FF"
   },
   // typography
   fontWeights: {

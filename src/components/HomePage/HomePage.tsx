@@ -1,22 +1,29 @@
-import React, { useState } from "react";
-import LazyLoad from 'react-lazyload';
+import { FC, useEffect, useState, Suspense, useCallback, memo } from "react";
 import { connect, ConnectedProps } from "react-redux";
 import { SearchInput } from '../SearchInput/SearchInput';
-import { NoResult } from '../NoResult/NoResult';
+import NoResult from '../NoResult/NoResult';
+import { Loading } from '../Loading/Loading';
 import { Link } from "react-router-dom";
-
+import { useDispatch } from "react-redux";
+import { getScrollYTrigger } from '../../actions';
 import {
   AccordionButton,
   CharacterImage,
   CharacterHeading,
   EpisodeInfo,
   EpisodeContainer,
-  EpisodeListSection,
+  EpisodeInfoBlock,
+  EpisodeBlock
 } from "./HomePage.styles";
+import LazyLoad from 'react-lazyload';
 
-export const HomePage: React.FC<HomePageProps> = ({ characterData }) => {
+export const HomePage: FC<HomePageProps> = ({ characterData, loaded, triggerPosY, checkScrollY }) => {
+  console.log(checkScrollY);
   const [inputValue, setInputValue] = useState("");
   const [selectedId, setSelectedId] = useState(0);
+  const [scroll, setScroll] = useState(false);
+  const dispatch = useDispatch();
+
   const onSelectItem = (selectedItemId: number) => {
     if (selectedId !== selectedItemId) {
       setSelectedId(selectedItemId);
@@ -25,13 +32,30 @@ export const HomePage: React.FC<HomePageProps> = ({ characterData }) => {
     }
   };
 
+  const handleScollTab = () => {
+    dispatch(getScrollYTrigger(true));
+
+    let timer = setTimeout(() => {
+      dispatch(getScrollYTrigger(false));
+    }, 1000);
+    clearTimeout(timer);
+  };
+
+  useEffect(() => {
+    window.addEventListener("scroll", handleScollTab);
+
+    return () => {
+      window.removeEventListener("scroll", handleScollTab);
+    };
+  }, [handleScollTab]);
+
   let filterResult = characterData.filter((character: { name: string; }) => {
     return character.name.toLowerCase().includes(inputValue.toLowerCase());
   });
 
   return (
-    <React.Fragment>
-      <SearchInput value={inputValue} onChange={setInputValue} />
+    <Suspense fallback={<Loading />}>
+      <SearchInput value={inputValue} onChange={setInputValue} triggerPosY={triggerPosY} />
       <EpisodeContainer>
         {filterResult.length > 0 ? (filterResult.map((character: {
           id: number;
@@ -42,7 +66,7 @@ export const HomePage: React.FC<HomePageProps> = ({ characterData }) => {
             name: string;
           };
         }) => (
-          <div key={character.id}>
+          <EpisodeBlock key={character.id}>
             <CharacterHeading>{character.name}</CharacterHeading>
             <LazyLoad>
               <CharacterImage src={character.image} alt={character.name} />
@@ -51,9 +75,9 @@ export const HomePage: React.FC<HomePageProps> = ({ characterData }) => {
               onClick={() => onSelectItem(character.id)}
               open={character.id === selectedId ? true : false}
             >
-              More info
-          </AccordionButton>
-            <EpisodeListSection
+              {character.id === selectedId ? 'Close' : 'More info'}
+            </AccordionButton>
+            <EpisodeInfoBlock
               open={character.id === selectedId ? false : true}
             >
               <p>{character.created}</p>
@@ -63,21 +87,24 @@ export const HomePage: React.FC<HomePageProps> = ({ characterData }) => {
               >
                 Character Info
             </Link>
-            </EpisodeListSection>
-          </div>
+            </EpisodeInfoBlock>
+          </EpisodeBlock>
         )
-        )) : (<NoResult />)}
+        )) : (<NoResult loaded={loaded} />)}
       </EpisodeContainer>
-    </React.Fragment >
+    </Suspense>
   );
 };
 
 const mapStateToProps = (state: any) => {
   return {
-    characterData: state.episodes.episodeList || []
+    characterData: state.episodes.episodeList || [],
+    loaded: state.episodes.episodeLoaded,
+    triggerPosY: state.episodes.scrollTrigger,
+    checkScrollY: state.episodes.checkScollYTrigger
   };
 };
 
 const connector = connect(mapStateToProps);
 type HomePageProps = ConnectedProps<typeof connector>;
-export default connector(HomePage);
+export default connector((memo(HomePage)));
