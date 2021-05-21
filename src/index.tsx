@@ -1,20 +1,26 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { App } from './App';
+import episodes from './reducers';
+import thunk from "redux-thunk";
 import reportWebVitals from './reportWebVitals';
-import { ApolloClient, InMemoryCache } from '@apollo/client';
-import { ApolloProvider } from '@apollo/client/react';
+import { App } from './App';
+import { Provider } from 'react-redux';
+import { Router } from "react-router-dom";
+import history from "./history";
+import { applyMiddleware, createStore } from 'redux';
 
-export const client = new ApolloClient({
-  uri: 'https://rickandmortyapi.com/graphql',
-  cache: new InMemoryCache()
-});
+const store = createStore(
+  episodes,
+  applyMiddleware(thunk),
+);
 
 ReactDOM.render(
   <React.StrictMode>
-    <ApolloProvider client={client}>
-      <App />
-    </ApolloProvider>
+    <Provider store={store}>
+      <Router history={history}>
+        <App />
+      </Router>
+    </Provider>
   </React.StrictMode>,
   document.getElementById('root')
 );

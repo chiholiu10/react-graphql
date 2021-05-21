@@ -1,8 +1,17 @@
 import styled from 'styled-components';
 import { breakpoint } from "../../styles/BreakPoint";
 
+export const Nav = styled.nav`
+  position: fixed;
+  width: 100%;
+  height: 80px;
+  background-color: green;
+`;
+
 export const AccordionButton = styled.div<{ open: boolean; }>`
-  border: ${props => (props.open ? "1px solid red" : "1px solid green")};
+  background-color: ${props => (props.open ? "grey" : "black")};
+  padding: 1rem;
+
 `;
 
 export const CharacterImage = styled.img`
@@ -18,15 +27,12 @@ export const CharacterHeading = styled.h2`
 
 export const EpisodeListSection = styled.div<{ open: boolean; }>`
   background-color: ${({ theme }) => theme.colors.grey};
-  display: flex;
-  flex-wrap: wrap;
+  display: ${props => (props.open ? "none" : "flex")};
+  flex-direction: column;
   padding: 1rem;
-  display: ${props => (props.open ? "none" : "block")};
 `;
 
 export const EpisodeInfo = styled.div`
-  flex: 0 0 33.333%;
-  padding: 10px 10px 25px; 
 `;
 
 export const EpisodeName = styled.p`
@@ -45,6 +51,7 @@ export const EpisodeImage = styled.img`
   object-position: 100% 0;
 `;
 
-export const AccordionItemPanel = styled.div`
+export const EpisodeContainer = styled.div`
+  padding-top: 6rem;
 `;
 
