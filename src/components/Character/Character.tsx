@@ -11,6 +11,7 @@ import {
   CharacterGender,
   CharacterImage,
   CharacterTopColumn,
+  CharacterInnerContainer,
   Button
 } from './Character.styles';
 import { Loading } from '../Loading/Loading';
@@ -43,21 +44,24 @@ export const Character: FC<CharacterPageProps> = ({ characterDetails }) => {
   return (
     <Suspense fallback={<Loading />}>
       <CharacterContainer>
-        <CharacterColumn>
-          <CharacterName>{characterDetails.name}</CharacterName>
-          <CharacterStatus>Status: {characterDetails.status}</CharacterStatus>
-          <CharacterSpecies>Species: {characterDetails.species}</CharacterSpecies>
-          <CharacterGender>Gender: {characterDetails.gender}</CharacterGender>
-        </CharacterColumn>
-        <CharacterColumn>
-          <LazyLoad>
-            <CharacterImage src={characterDetails.image} alt={characterDetails.name} />
-          </LazyLoad>
-        </CharacterColumn>
+        <CharacterTopColumn>
+          <Button onClick={() => previousPage()}>Go Back</Button>
+        </CharacterTopColumn>
+        <CharacterInnerContainer>
+          <CharacterColumn>
+            <CharacterName>{characterDetails.name}</CharacterName>
+            <CharacterStatus>Status: {characterDetails.status}</CharacterStatus>
+            <CharacterSpecies>Species: {characterDetails.species}</CharacterSpecies>
+            <CharacterGender>Gender: {characterDetails.gender}</CharacterGender>
+          </CharacterColumn>
+          <CharacterColumn>
+            <LazyLoad>
+              <CharacterImage src={characterDetails.image} alt={characterDetails.name} />
+            </LazyLoad>
+          </CharacterColumn>
+        </CharacterInnerContainer>
       </CharacterContainer>
-      <CharacterTopColumn>
-        <Button onClick={() => previousPage()}>Go Back</Button>
-      </CharacterTopColumn>
+
     </Suspense>
   );
 };

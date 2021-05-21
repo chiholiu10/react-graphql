@@ -1,18 +1,16 @@
 import { FC, useEffect, useState, Suspense, useCallback, memo } from "react";
 import { connect, ConnectedProps } from "react-redux";
 import { SearchInput } from '../SearchInput/SearchInput';
-import NoResult from '../NoResult/NoResult';
+import { NoResult } from '../NoResult/NoResult';
 import { Loading } from '../Loading/Loading';
-import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { getScrollYTrigger } from '../../actions';
+import { AccordionButton } from '../AccordionButton/AccordionButton';
+import { AccordionBlock } from '../AccordionBlock/AccordionBlock';
 import {
-  AccordionButton,
   CharacterImage,
   CharacterHeading,
-  EpisodeInfo,
   EpisodeContainer,
-  EpisodeInfoBlock,
   EpisodeBlock
 } from "./HomePage.styles";
 import LazyLoad from 'react-lazyload';
@@ -21,29 +19,26 @@ export const HomePage: FC<HomePageProps> = ({ characterData, loaded, triggerPosY
   console.log(checkScrollY);
   const [inputValue, setInputValue] = useState("");
   const [selectedId, setSelectedId] = useState(0);
-  const [scroll, setScroll] = useState(false);
   const dispatch = useDispatch();
 
-  const onSelectItem = (selectedItemId: number) => {
-    if (selectedId !== selectedItemId) {
-      setSelectedId(selectedItemId);
-    } else {
+  const handleScollTab = useCallback(
+    () => {
+      dispatch(getScrollYTrigger(true));
       setSelectedId(-1);
-    }
-  };
 
-  const handleScollTab = () => {
-    dispatch(getScrollYTrigger(true));
+      let timer = setTimeout(() => {
+        dispatch(getScrollYTrigger(false));
+      }, 1000);
 
-    let timer = setTimeout(() => {
-      dispatch(getScrollYTrigger(false));
-    }, 1000);
-    clearTimeout(timer);
-  };
+      return () => {
+        clearTimeout(timer);
+      };
+    },
+    [dispatch]
+  );
 
   useEffect(() => {
     window.addEventListener("scroll", handleScollTab);
-
     return () => {
       window.removeEventListener("scroll", handleScollTab);
     };
@@ -72,22 +67,16 @@ export const HomePage: FC<HomePageProps> = ({ characterData, loaded, triggerPosY
               <CharacterImage src={character.image} alt={character.name} />
             </LazyLoad>
             <AccordionButton
-              onClick={() => onSelectItem(character.id)}
-              open={character.id === selectedId ? true : false}
-            >
-              {character.id === selectedId ? 'Close' : 'More info'}
-            </AccordionButton>
-            <EpisodeInfoBlock
-              open={character.id === selectedId ? false : true}
-            >
-              <p>{character.created}</p>
-              <EpisodeInfo>{character.origin.name}</EpisodeInfo>
-              <Link
-                to={`/characters/${character.id}`}
-              >
-                Character Info
-            </Link>
-            </EpisodeInfoBlock>
+              characterId={character.id}
+              selectedId={selectedId}
+              setSelectedId={setSelectedId}
+            />
+            <AccordionBlock
+              selectedId={selectedId}
+              characterId={character.id}
+              characterName={character.origin.name}
+              characterCreated={character.created}
+            />
           </EpisodeBlock>
         )
         )) : (<NoResult loaded={loaded} />)}

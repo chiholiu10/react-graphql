@@ -1,5 +1,5 @@
 import { FC, useEffect, useState, useCallback, memo } from 'react';
-import { InputProps } from '../../types/types';
+import { IProps } from '../../types/types';
 import { useDispatch } from "react-redux";
 import {
   Nav,
@@ -7,7 +7,7 @@ import {
 } from "./SearchInput.styles";
 import { getScrollY } from '../../actions';
 
-export const SearchInput: FC<InputProps> = ({ value, onChange, triggerPosY }) => {
+export const SearchInput: FC<IProps> = ({ value, onChange, triggerPosY }) => {
   const dispatch = useDispatch();
   const [inputValue, setInputValue] = useState("");
   const [y, setY] = useState(window.scrollY);

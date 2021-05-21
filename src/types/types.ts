@@ -6,13 +6,16 @@ export interface Episodes {
 }
 
 export interface IProps {
-  characterData?: Episodes[];
-}
-
-export interface InputProps {
+  characterData: Episodes[];
   value: string,
   onChange: any;
   loaded: boolean;
   triggerPosY: boolean;
+  characterId: number;
+  selectedId: number;
+  setSelectedId: number;
+  characterName: string;
+  characterCreated: string;
 }
+
 

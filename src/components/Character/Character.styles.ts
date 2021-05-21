@@ -3,22 +3,28 @@ import { breakpoint } from "../../styles/BreakPoint";
 
 export const CharacterContainer = styled.div`
   padding: 1rem;
-  display: flex;
-  flex-direction: column;
+  display: flex;  
   padding-top: 50px;
+  flex-direction: column;
   ${breakpoint.sm`
     max-width: 700px;
     margin-left: auto;
     margin-right: auto;
+  `}
+`;
+
+export const CharacterInnerContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  ${breakpoint.sm`
     flex-direction: row;
   `}
 `;
 
 export const CharacterColumn = styled.div`
   font-size: 1.1rem;
-  padding-bottom: 2rem;
+  padding: 2rem 0;
   ${breakpoint.sm`
-    padding: 2rem;
     width: 50%;
   `}
 `;

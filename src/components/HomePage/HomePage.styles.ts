@@ -1,18 +1,6 @@
 import styled from 'styled-components';
 import { breakpoint } from "../../styles/BreakPoint";
 
-export const AccordionButton = styled.div<{ open: boolean; }>`
-  padding: 1rem;
-  color: white;
-  background-color: ${props => (props.open ? "grey" : "black")};
-  @media not all and (pointer: coarse) {
-    &:hover {
-      opacity: 0.7;
-      cursor: pointer;
-    }
-  }
-`;
-
 export const CharacterImage = styled.img`
   width: 100%;
   max-width: default;
@@ -28,15 +16,19 @@ export const CharacterHeading = styled.h2`
 `;
 
 export const EpisodeInfoBlock = styled.div<{ open: boolean; }>`
-  transition: 0.5s;
-  font-weight: bold;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  left: 0;
   flex-direction: column;
   padding: 1rem;
+  font-weight: ${({ theme }) => theme.fontWeights.bold};
   background-color: ${({ theme }) => theme.colors.darkGrey};
-  display: ${props => (props.open ? "none" : "flex")};
+  transition: bottom .800s ease;
+  bottom: ${props => (props.open ? "-180px" : "0")};
   color: ${({ theme }) => theme.colors.white};
   p {
-    padding: 0.7rem 0;
+    padding: 1rem 0 1.5rem;
   }
   a {
     margin-top: 1.5rem;
@@ -53,16 +45,16 @@ export const EpisodeInfoBlock = styled.div<{ open: boolean; }>`
       }
     }
   }
-
 `;
 
-export const EpisodeInfo = styled.div`
-  padding-bottom: 1rem;
+export const EpisodeInfo = styled.p`
+  padding-bottom: 1.5rem;
 `;
 
 export const EpisodeName = styled.p`
   height: 30px;
   font-size: 12px;
+  padding-bottom: 1rem;
 `;
 
 export const EpisodeImage = styled.img`
