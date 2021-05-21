@@ -1,9 +1,7 @@
 ## How to get this running on my local machine
 
-![Screen Shot 2021-04-29 at 23 53 58](https://user-images.githubusercontent.com/16224390/116623233-395af800-a946-11eb-823b-31c85f18d536.png)
-
 ### Clone
-- Clone this repo to your local machine using `https://github.com/chiholiu10/music-app`
+- Clone this repo to your local machine using `https://github.com/chiholiu10/react-redux-typescript-hooks`
 
 ### Built with
 
@@ -24,8 +22,18 @@ In the project directory, you can run:
 * npm run start
 
 ### How the app works
-* Type title in search input field, add genres or released year
+* Type title in input field
+* Click randomly on 'More info'
+* Popup will display on screen
+* Click on 'Character Info'
+* User will be redirected to page with more details
+* Also possible to return back to previous page
 * Responsive design included 
+
+### Built some cool components with nice UX, for instance:
+* Search input makes transition effect when scroll up or down
+* Cool popup when user clicks on 'More info' button
+* This popup block will also hide when user scroll up or down
 
 ### Check on linting error
 * npm run lint
@@ -64,3 +72,8 @@ In the project directory, you can run:
 - @types/react-lazyload: 3.1.0
 - @types/react-router-dom: 5.1.7
 - @types/styled-components: 5.1.9 
+
+#### What more would you have built in case you had more time
+- A/B Testing implementation
+- Graphql implementation
+- More attention to performance, which isnt that bad. But it always feels good to deliver high-performance product. 
