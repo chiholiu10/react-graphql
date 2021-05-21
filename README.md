@@ -75,5 +75,5 @@ In the project directory, you can run:
 
 #### What more would you have built in case you had more time
 - A/B Testing implementation
-- Graphql implementation
+- Comment sections where user could drop their comments, which would be built with NodeJS, Express and MongoDB. 
 - More attention to performance, which isnt that bad. But it always feels good to deliver high-performance product. 
