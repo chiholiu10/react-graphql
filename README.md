@@ -9,8 +9,6 @@
 - [Redux](https://redux.js.org/)
 - [Eslint](https://eslint.org/) 
 - [Styled-Component](https://styled-components.com) 
-- [Jest](https://jestjs.io/)
-- [Enzyme](https://enzymejs.github.io/enzyme/)
 - [TypeScript](https://www.typescriptlang.org/)
 
 ## Available Scripts
