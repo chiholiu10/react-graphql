@@ -7,6 +7,7 @@ import { useDispatch } from "react-redux";
 import { getScrollYTrigger } from '../../actions';
 import { AccordionButton } from '../AccordionButton/AccordionButton';
 import { AccordionBlock } from '../AccordionBlock/AccordionBlock';
+import { HomeProps } from '../../types/types';
 import {
   CharacterImage,
   CharacterHeading,
@@ -15,11 +16,18 @@ import {
 } from "./HomePage.styles";
 import LazyLoad from 'react-lazyload';
 
-export const HomePage: FC<HomePageProps> = ({ characterData, loaded, triggerPosY, checkScrollY }) => {
-  console.log(checkScrollY);
+export const HomePage: FC<HomePageProps & HomeProps> = ({ characterData, loaded }) => {
   const [inputValue, setInputValue] = useState("");
   const [selectedId, setSelectedId] = useState(0);
   const dispatch = useDispatch();
+
+  const onSelectItem = (selectedItemId: number) => {
+    if (selectedId !== selectedItemId) {
+      setSelectedId(selectedItemId);
+    } else {
+      setSelectedId(-1);
+    }
+  };
 
   const handleScollTab = useCallback(
     () => {
@@ -50,7 +58,7 @@ export const HomePage: FC<HomePageProps> = ({ characterData, loaded, triggerPosY
 
   return (
     <Suspense fallback={<Loading />}>
-      <SearchInput value={inputValue} onChange={setInputValue} triggerPosY={triggerPosY} />
+      <SearchInput value={inputValue} onChange={setInputValue} />
       <EpisodeContainer>
         {filterResult.length > 0 ? (filterResult.map((character: {
           id: number;
@@ -69,7 +77,7 @@ export const HomePage: FC<HomePageProps> = ({ characterData, loaded, triggerPosY
             <AccordionButton
               characterId={character.id}
               selectedId={selectedId}
-              setSelectedId={setSelectedId}
+              onClick={() => onSelectItem(character.id)}
             />
             <AccordionBlock
               selectedId={selectedId}
@@ -89,7 +97,6 @@ const mapStateToProps = (state: any) => {
   return {
     characterData: state.episodes.episodeList || [],
     loaded: state.episodes.episodeLoaded,
-    triggerPosY: state.episodes.scrollTrigger,
     checkScrollY: state.episodes.checkScollYTrigger
   };
 };

@@ -31,7 +31,9 @@ export const Character: FC<CharacterPageProps> = ({ characterDetails }) => {
         );
         dispatch(getEpisode(response.data));
       } catch (error) {
-        console.log(error);
+        history.push({
+          pathname: '/404'
+        });
       }
     };
     fetchData();

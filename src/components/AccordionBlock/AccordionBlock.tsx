@@ -1,9 +1,9 @@
 import { FC } from 'react';
 import { Link } from "react-router-dom";
-import { IProps } from '../../types/types';
+import { AccordionBlockProps } from '../../types/types';
 import { AccordionSection, AccordionInfo, AccordionDate, Button } from './AccordionBlock.styles';
 
-export const AccordionBlock: FC<IProps> = ({
+export const AccordionBlock: FC<AccordionBlockProps> = ({
   selectedId,
   characterId,
   characterName,

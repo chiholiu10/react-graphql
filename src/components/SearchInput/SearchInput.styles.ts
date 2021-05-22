@@ -3,7 +3,7 @@ import { breakpoint } from "../../styles/BreakPoint";
 
 export const Nav = styled.nav<{ show: boolean; }>`
   width: 100%;
-  top: ${(props: { show: boolean; }) => (props.show ? "0" : "-100px")};
+  top: ${props => (props.show ? "0" : "-100px")};
   transition: top .800s ease;
   background-color: ${({ theme }) => theme.colors.grey};
   padding: 0.5rem;

@@ -28,5 +28,6 @@
         "**/src/**/*.ts",
         "/src/**/*.d.ts",
         "**/*.tsx",
+        "src/actions/index.js",
     ]
 }

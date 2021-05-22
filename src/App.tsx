@@ -34,9 +34,9 @@ export const App: React.FC = () => {
     <ThemeProvider theme={theme}>
       <GlobalStyleReset />
       <Switch>
-        <Route exact path="/" render={() => <HomePage />} />
-        <Route path="/characters/:id" render={() => <Character />} />
-        <Route path="" render={() => <Page404 />} />
+        <Route exact path="/" component={HomePage} />
+        <Route path="/characters/:id" component={Character} />
+        <Route path="" component={Page404} />
       </Switch>
     </ThemeProvider>
   );

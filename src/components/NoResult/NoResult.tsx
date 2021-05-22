@@ -1,7 +1,7 @@
-import { FC, memo } from "react";
+import { FC } from "react";
 import { NoSearch } from "./NoResult.styles";
-import { connect, ConnectedProps } from "react-redux";
 import { Loading } from '../Loading/Loading';
+import { NoResultProps } from '../../types/types';
 
 export const NoResult: FC<NoResultProps> = ({ loaded }) => {
   if (!loaded) {
@@ -14,13 +14,3 @@ export const NoResult: FC<NoResultProps> = ({ loaded }) => {
     );
   }
 };
-
-const mapStateToProps = (state: any) => {
-  return {
-    loaded: state.episodes.episodeLoaded
-  };
-};
-
-const connector = connect(mapStateToProps);
-type NoResultProps = ConnectedProps<typeof connector>;
-export default connector(memo(NoResult));

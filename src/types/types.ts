@@ -5,17 +5,29 @@ export interface Episodes {
   type: string;
 }
 
-export interface IProps {
+export interface HomeProps {
   characterData: Episodes[];
-  value: string,
-  onChange: any;
   loaded: boolean;
-  triggerPosY: boolean;
+}
+
+export interface SearchInputProps {
+  value: string;
+  onChange: any;
+}
+
+export interface AccordionButtonProps {
   characterId: number;
   selectedId: number;
-  setSelectedId: number;
+  onClick: any;
+}
+
+export interface AccordionBlockProps {
+  selectedId: number;
+  characterId: number;
   characterName: string;
   characterCreated: string;
 }
 
-
+export interface NoResultProps {
+  loaded: boolean;
+}

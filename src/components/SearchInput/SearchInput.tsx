@@ -1,15 +1,10 @@
-import { FC, useEffect, useState, useCallback, memo } from 'react';
-import { IProps } from '../../types/types';
-import { useDispatch } from "react-redux";
-import {
-  Nav,
-  Input
-} from "./SearchInput.styles";
-import { getScrollY } from '../../actions';
+import { FC, useEffect, useState, useCallback, memo, ChangeEvent } from 'react';
+import { SearchInputProps } from '../../types/types';
+import { Nav, Input } from "./SearchInput.styles";
 
-export const SearchInput: FC<IProps> = ({ value, onChange, triggerPosY }) => {
-  const dispatch = useDispatch();
+export const SearchInput: FC<SearchInputProps> = ({ value, onChange }) => {
   const [inputValue, setInputValue] = useState("");
+  const [scrollY, setScrollY] = useState(true);
   const [y, setY] = useState(window.scrollY);
 
   const onChangeHandler = (text: string) => {
@@ -20,9 +15,9 @@ export const SearchInput: FC<IProps> = ({ value, onChange, triggerPosY }) => {
     event => {
       const window = event.currentTarget;
       if (y > window.scrollY) {
-        dispatch(getScrollY(true));
+        setScrollY(true);
       } else {
-        dispatch(getScrollY(false));
+        setScrollY(false);
       }
       setY(window.scrollY);
     }, [y]
@@ -42,11 +37,11 @@ export const SearchInput: FC<IProps> = ({ value, onChange, triggerPosY }) => {
   }, [inputValue, onChange]);
 
   return (
-    <Nav show={triggerPosY}>
+    <Nav show={scrollY}>
       <Input
         type="text"
         name="name"
-        onChange={(event) => onChangeHandler(event.target.value)}
+        onChange={(event: ChangeEvent<HTMLInputElement>) => onChangeHandler(event.target.value)}
         placeholder="Search Episode"
         value={value}
       />

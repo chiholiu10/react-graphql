@@ -34,7 +34,7 @@ export const getScrollY = (trigger: boolean) => {
   };
 };
 
-export const getScrollYTrigger = (checkScrollY: any) => {
+export const getScrollYTrigger = (checkScrollY: boolean) => {
   return {
     type: types.GET_CHECK_SCROLL_Y,
     checkScrollY
