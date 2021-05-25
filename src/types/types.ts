@@ -31,3 +31,38 @@ export interface AccordionBlockProps {
 export interface NoResultProps {
   loaded: boolean;
 }
+
+export interface CharacterData {
+  created: string;
+  episodes: Episodes;
+  gender: string;
+  id: number;
+  image: string;
+  location: {
+    name: string, url: string;
+  };
+  name: string;
+  origin: {
+    name: string,
+    url: string;
+  };
+  species: string;
+  status: string;
+  type: string;
+  url: string;
+}
+
+export interface StateProps {
+  episodeList: CharacterData[];
+  episodeLoaded: boolean,
+  checkScollYTrigger: boolean;
+  episodeData: CharacterDetail;
+}
+
+export interface CharacterDetail {
+  name: string;
+  status: string;
+  species: string;
+  gender: string;
+  image: string;
+}

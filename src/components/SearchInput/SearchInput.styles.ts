@@ -1,14 +1,15 @@
 import styled from 'styled-components';
 import { breakpoint } from "../../styles/BreakPoint";
+import theme from '../../styles/Themes';
 
 export const Nav = styled.nav<{ show: boolean; }>`
   width: 100%;
-  top: ${props => (props.show ? "0" : "-100px")};
   transition: top .800s ease;
-  background-color: ${({ theme }) => theme.colors.grey};
   padding: 0.5rem;
   position: fixed;
   box-shadow: 0px 0px 6px 4px rgb(0 0 0 / 10%);
+  top: ${props => (props.show ? "0" : "-100px")};
+  background-color: ${theme.colors.grey};
   ${breakpoint.sm`
     top: 0;
   `}
@@ -25,7 +26,7 @@ export const Input = styled.input`
   @media not all and (pointer: coarse) {
     &:focus {
       outline: none;
-      border: 2px solid  ${({ theme }) => theme.colors.outline};
+      border: 2px solid  ${theme.colors.outline};
       ${breakpoint.sm`
         width: 400px;
         transition: width 0.5s;

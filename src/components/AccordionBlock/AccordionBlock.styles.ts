@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import theme from '../../styles/Themes';
 
 export const AccordionSection = styled.div<{ open: boolean; }>`
   position: fixed;
@@ -7,18 +8,18 @@ export const AccordionSection = styled.div<{ open: boolean; }>`
   left: 0;
   flex-direction: column;
   padding: 1rem;
-  font-weight: ${({ theme }) => theme.fontWeights.bold};
-  background-color: ${({ theme }) => theme.colors.darkGrey};
   transition: bottom .8s ease;
   bottom: ${props => (props.open ? "-180px" : "0")};
-  color: ${({ theme }) => theme.colors.white};
+  font-weight: ${theme.fontWeights.bold};
+  background-color: ${theme.colors.darkGrey};
+  color: ${theme.colors.white};
   p {
     margin: 0.8rem 0 0.5rem;
   }
 `;
 
 export const AccordionDate = styled.p`
-
+  padding-bottom: 0.5rem;
 `;
 
 export const AccordionInfo = styled.p`

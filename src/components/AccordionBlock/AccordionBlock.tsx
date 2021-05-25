@@ -9,11 +9,12 @@ export const AccordionBlock: FC<AccordionBlockProps> = ({
   characterName,
   characterCreated
 }) => {
+  let date = new Date(characterCreated).toString();
   return (
     <AccordionSection
       open={characterId === selectedId ? false : true}
     >
-      <AccordionDate>{characterCreated}</AccordionDate>
+      <AccordionDate>{date}</AccordionDate>
       {characterName === "unknown" ? "" : <AccordionInfo>{characterName}</AccordionInfo>}
       <Button>
         <Link

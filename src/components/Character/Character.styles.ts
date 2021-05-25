@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { breakpoint } from "../../styles/BreakPoint";
+import theme from '../../styles/Themes';
 
 export const CharacterContainer = styled.div`
   padding: 1rem;
@@ -69,8 +70,8 @@ export const CharacterImage = styled.img`
 
 export const Button = styled.button`
   padding: 0.5rem 1.2rem;
-  background-color: ${({ theme }) => theme.colors.white};
-  color: ${({ theme }) => theme.colors.black};
+  background-color: ${theme.colors.white};
+  color: ${theme.colors.black};
 `;
 
 export const CharacterTopColumn = styled.div`

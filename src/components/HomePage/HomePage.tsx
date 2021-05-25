@@ -7,7 +7,7 @@ import { useDispatch } from "react-redux";
 import { getScrollYTrigger } from '../../actions';
 import { AccordionButton } from '../AccordionButton/AccordionButton';
 import { AccordionBlock } from '../AccordionBlock/AccordionBlock';
-import { HomeProps } from '../../types/types';
+import { StateProps } from '../../types/types';
 import {
   CharacterImage,
   CharacterHeading,
@@ -16,7 +16,7 @@ import {
 } from "./HomePage.styles";
 import LazyLoad from 'react-lazyload';
 
-export const HomePage: FC<HomePageProps & HomeProps> = ({ characterData, loaded }) => {
+export const HomePage: FC<HomePageProps & StateProps> = ({ characterData, loaded }) => {
   const [inputValue, setInputValue] = useState("");
   const [selectedId, setSelectedId] = useState(0);
   const dispatch = useDispatch();
@@ -93,13 +93,11 @@ export const HomePage: FC<HomePageProps & HomeProps> = ({ characterData, loaded 
   );
 };
 
-const mapStateToProps = (state: any) => {
-  return {
-    characterData: state.episodes.episodeList || [],
-    loaded: state.episodes.episodeLoaded,
-    checkScrollY: state.episodes.checkScollYTrigger
-  };
-};
+const mapStateToProps = (state: { episodes: StateProps; }) => ({
+  characterData: state.episodes.episodeList || [],
+  loaded: state.episodes.episodeLoaded,
+  checkScrollY: state.episodes.checkScollYTrigger
+});
 
 const connector = connect(mapStateToProps);
 type HomePageProps = ConnectedProps<typeof connector>;

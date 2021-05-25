@@ -18,6 +18,7 @@ import { Loading } from '../Loading/Loading';
 import history from "../../history";
 import LazyLoad from 'react-lazyload';
 import axios from "axios";
+import { StateProps } from "../../types/types";
 
 export const Character: FC<CharacterPageProps> = ({ characterDetails }) => {
   let { id } = useParams<{ id: string; }>();
@@ -39,9 +40,7 @@ export const Character: FC<CharacterPageProps> = ({ characterDetails }) => {
     fetchData();
   }, []);
 
-  const previousPage = () => {
-    history.goBack();
-  };
+  const previousPage = () => history.goBack();
 
   return (
     <Suspense fallback={<Loading />}>
@@ -63,16 +62,13 @@ export const Character: FC<CharacterPageProps> = ({ characterDetails }) => {
           </CharacterColumn>
         </CharacterInnerContainer>
       </CharacterContainer>
-
     </Suspense>
   );
 };
 
-const mapStateToProps = (state: any) => {
-  return {
-    characterDetails: state.episodes.episodeData || []
-  };
-};
+const mapStateToProps = (state: { episodes: StateProps; }) => ({
+  characterDetails: state.episodes.episodeData || []
+});
 
 const connector = connect(mapStateToProps);
 type CharacterPageProps = ConnectedProps<typeof connector>;
