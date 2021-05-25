@@ -7,7 +7,6 @@ export const Nav = styled.nav<{ show: boolean; }>`
   transition: top .800s ease;
   padding: 0.5rem;
   position: fixed;
-  box-shadow: 0px 0px 6px 4px rgb(0 0 0 / 10%);
   top: ${props => (props.show ? "0" : "-100px")};
   background-color: ${theme.colors.grey};
   ${breakpoint.sm`

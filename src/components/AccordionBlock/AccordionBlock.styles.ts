@@ -27,13 +27,15 @@ export const AccordionInfo = styled.p`
 `;
 
 export const Button = styled.button`
+  display: flex;          
+  flex-direction: column;  
+  justify-content: center; 
+  align-items: center;   
   a {
     background-color: white;
     text-decoration: none;
     color: black;
-    width: 150px;
-    padding: 10px;
-    text-align: center;
+    padding: 10px 20px; 
     @media not all and (pointer: coarse) {
       &:hover {
         cursor: pointer;
