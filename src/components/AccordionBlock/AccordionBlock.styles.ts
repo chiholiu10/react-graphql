@@ -23,7 +23,7 @@ export const AccordionDate = styled.p`
 `;
 
 export const AccordionInfo = styled.p`
-  padding-bottom: 1.5rem;
+  padding-bottom: 1rem;
 `;
 
 export const Button = styled.button`
