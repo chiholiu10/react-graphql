@@ -72,6 +72,12 @@ export const Button = styled.button`
   padding: 0.5rem 1.2rem;
   background-color: ${theme.colors.white};
   color: ${theme.colors.black};
+  @media not all and (pointer: coarse) {
+    &:hover {
+      opacity: 0.7;
+      cursor: pointer;
+    }
+  }
 `;
 
 export const CharacterTopColumn = styled.div`

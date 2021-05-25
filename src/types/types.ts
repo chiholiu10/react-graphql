@@ -39,11 +39,12 @@ export interface CharacterData {
   id: number;
   image: string;
   location: {
-    name: string, url: string;
+    name: string;
+    url: string;
   };
   name: string;
   origin: {
-    name: string,
+    name: string;
     url: string;
   };
   species: string;
@@ -55,7 +56,7 @@ export interface CharacterData {
 export interface StateProps {
   episodeList: CharacterData[];
   episodeLoaded: boolean,
-  checkScollYTrigger: boolean;
+  checkScollYTrigger: Trigger;
   episodeData: CharacterDetail;
 }
 
@@ -65,4 +66,8 @@ export interface CharacterDetail {
   species: string;
   gender: string;
   image: string;
+}
+
+export interface Trigger {
+  trigger: boolean;
 }

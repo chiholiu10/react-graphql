@@ -27,9 +27,7 @@ export const SearchInput: FC<SearchInputProps> = ({ value, onChange }) => {
     setY(window.scrollY);
     window.addEventListener("scroll", handleNavigation);
 
-    return () => {
-      window.removeEventListener("scroll", handleNavigation);
-    };
+    return () => window.removeEventListener("scroll", handleNavigation);
   }, [handleNavigation]);
 
   useEffect(() => {

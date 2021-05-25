@@ -38,9 +38,7 @@ export const HomePage: FC<HomePageProps & StateProps> = ({ characterData, loaded
         dispatch(getScrollYTrigger(false));
       }, 1000);
 
-      return () => {
-        clearTimeout(timer);
-      };
+      return () => clearTimeout(timer);
     },
     [dispatch]
   );
