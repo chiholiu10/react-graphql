@@ -26,7 +26,7 @@ In the project directory, you can run:
 * Click randomly on 'More info'
 * Popup will display on screen
 * Click on 'Character Info'
-* User will be redirected to page with more details
+* User will be redirected to detail page
 * Also possible to return back to previous page
 * Responsive design included 
 
