@@ -70,8 +70,3 @@ In the project directory, you can run:
 - @types/react-lazyload: 3.1.0
 - @types/react-router-dom: 5.1.7
 - @types/styled-components: 5.1.9 
-
-#### What more would you have built in case you had more time
-- A/B Testing implementation
-- Comment sections where user could drop their comments, which would be built with NodeJS, Express and MongoDB. 
-- More attention to performance, which isnt that bad. But it always feels good to deliver high-performance product. 
