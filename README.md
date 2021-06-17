@@ -11,8 +11,6 @@
 - [Styled-Component](https://styled-components.com) 
 - [TypeScript](https://www.typescriptlang.org/)
 
-React has a very big community which is also backed by Facebook, furthermore there are also lot of rich packages that can be used in order to speed up the production process. Also Redux is a very great state management which helps Developers to easily and quickly track the states in any possible components. So in order words this helps to make the app more scalable and readable for future Developers. Redux when using it in the right way definitely makes apps very scalable and easy to maintain. In order to build high-performance app, using a linter like Eslint can track all problems which cannnot be seen with own eyes. Besides that they offer lot of options so Developers can adjust them to their own needs and requirements. With Styled Component you force yourself to get rid of classNames which makes the code more readable. Furthermore it makes the code lot cleaner since styles are created inside the folder with the corresponding React component and in case when adding tests it can also be put in the same folder. No need to scroll through large nested SASS or SCSS files or thinking too much about how to name different classnames. With TypeScript you can easilty refactor the code since it will show errors when changing name of functions. 
-
 ## Available Scripts
 
 In the project directory, you can run:
@@ -26,14 +24,14 @@ In the project directory, you can run:
 * Click randomly on 'More info'
 * Popup will display on screen
 * Click on 'Character Info'
-* User will be redirected to page with more details
+* User will be redirected to detail page
 * Also possible to return back to previous page
 * Responsive design included 
 
 ### Built some cool components with nice UX, for instance:
-* Search input makes transition effect when scroll up or down
+* Search input with transition effect when scroll up or down
 * Cool popup when user clicks on 'More info' button
-* This popup block will also hide when user scroll up or down
+* This popup block will also hide when user scrolls up or down
 
 ### Check on linting error
 * npm run lint
@@ -72,8 +70,3 @@ In the project directory, you can run:
 - @types/react-lazyload: 3.1.0
 - @types/react-router-dom: 5.1.7
 - @types/styled-components: 5.1.9 
-
-#### What more would you have built in case you had more time
-- A/B Testing implementation
-- Comment sections where user could drop their comments, which would be built with NodeJS, Express and MongoDB. 
-- More attention to performance, which isnt that bad. But it always feels good to deliver high-performance product. 
