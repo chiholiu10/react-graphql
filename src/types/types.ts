@@ -71,3 +71,8 @@ export interface CharacterDetail {
 export interface Trigger {
   trigger: boolean;
 }
+
+export interface LazyLoaderProps {
+  src: string;
+  alt: string;
+}

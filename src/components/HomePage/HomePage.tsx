@@ -7,26 +7,23 @@ import { useDispatch } from "react-redux";
 import { getScrollYTrigger } from '../../actions';
 import { AccordionButton } from '../AccordionButton/AccordionButton';
 import { AccordionBlock } from '../AccordionBlock/AccordionBlock';
+import { LazyLoader } from '../LazyLoader/LazyLoader';
 import { StateProps } from '../../types/types';
 import {
-  CharacterImage,
+  // CharacterImage,
   CharacterHeading,
   EpisodeContainer,
   EpisodeBlock
 } from "./HomePage.styles";
-import LazyLoad from 'react-lazyload';
 
 export const HomePage: FC<HomePageProps & StateProps> = ({ characterData, loaded }) => {
   const [inputValue, setInputValue] = useState("");
   const [selectedId, setSelectedId] = useState(0);
+
   const dispatch = useDispatch();
 
   const onSelectItem = (selectedItemId: number) => {
-    if (selectedId !== selectedItemId) {
-      setSelectedId(selectedItemId);
-    } else {
-      setSelectedId(-1);
-    }
+    selectedId !== selectedItemId ? setSelectedId(selectedItemId) : setSelectedId(-1);
   };
 
   const handleScollTab = useCallback(
@@ -36,18 +33,21 @@ export const HomePage: FC<HomePageProps & StateProps> = ({ characterData, loaded
 
       let timer = setTimeout(() => {
         dispatch(getScrollYTrigger(false));
-      }, 1000);
-
+      }, 2000);
       return () => clearTimeout(timer);
+
     },
     [dispatch]
   );
 
   useEffect(() => {
     window.addEventListener("scroll", handleScollTab);
+
     return () => {
       window.removeEventListener("scroll", handleScollTab);
     };
+
+
   }, [handleScollTab]);
 
   let filterResult = characterData.filter((character: { name: string; }) => {
@@ -66,12 +66,10 @@ export const HomePage: FC<HomePageProps & StateProps> = ({ characterData, loaded
           origin: {
             name: string;
           };
-        }) => (
-          <EpisodeBlock key={character.id}>
+        }, index: number) => (
+          <EpisodeBlock key={index}>
             <CharacterHeading>{character.name}</CharacterHeading>
-            <LazyLoad>
-              <CharacterImage src={character.image} alt={character.name} />
-            </LazyLoad>
+            <LazyLoader src={character.image} alt={character.name} />
             <AccordionButton
               characterId={character.id}
               selectedId={selectedId}

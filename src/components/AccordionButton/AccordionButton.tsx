@@ -1,8 +1,9 @@
-import { FC } from 'react';
+import { FC, memo } from 'react';
 import { AccordionBtn } from './AccordionButton.styles';
 import { AccordionButtonProps } from '../../types/types';
 
 export const AccordionButton: FC<AccordionButtonProps> = ({ characterId, selectedId, onClick }) => {
+
   return (
     <AccordionBtn
       open={characterId === selectedId ? true : false}
@@ -12,3 +13,5 @@ export const AccordionButton: FC<AccordionButtonProps> = ({ characterId, selecte
     </AccordionBtn>
   );
 };
+
+export default memo(AccordionButton);

@@ -16,7 +16,6 @@ import {
 } from './Character.styles';
 import { Loading } from '../Loading/Loading';
 import history from "../../history";
-import LazyLoad from 'react-lazyload';
 import axios from "axios";
 import { StateProps } from "../../types/types";
 
@@ -40,7 +39,7 @@ export const Character: FC<CharacterPageProps> = ({ characterDetails }) => {
     fetchData();
   }, []);
 
-  const previousPage = () => history.goBack();
+  const previousPage = () => history.back();
 
   return (
     <Suspense fallback={<Loading />}>
@@ -56,9 +55,7 @@ export const Character: FC<CharacterPageProps> = ({ characterDetails }) => {
             <CharacterGender>Gender: {characterDetails.gender}</CharacterGender>
           </CharacterColumn>
           <CharacterColumn>
-            <LazyLoad>
-              <CharacterImage src={characterDetails.image} alt={characterDetails.name} />
-            </LazyLoad>
+            <CharacterImage src={characterDetails.image} loading="lazy" alt={characterDetails.name} />
           </CharacterColumn>
         </CharacterInnerContainer>
       </CharacterContainer>

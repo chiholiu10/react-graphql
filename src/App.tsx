@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { FC, useEffect } from 'react';
 import HomePage from './components/HomePage/HomePage';
 import Character from './components/Character/Character';
 import { Page404 } from './components/Page404/Page404';
@@ -11,7 +11,7 @@ import history from "./history";
 import theme from "./styles/Themes";
 import axios from "axios";
 
-export const App: React.FC = () => {
+export const App: FC = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -21,6 +21,7 @@ export const App: React.FC = () => {
           "https://rickandmortyapi.com/api/character"
         );
         dispatch(getData(response.data.results));
+
       } catch (error) {
         history.push({
           pathname: '/404'

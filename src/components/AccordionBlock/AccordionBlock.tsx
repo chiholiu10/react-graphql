@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, memo } from 'react';
 import { Link } from "react-router-dom";
 import { AccordionBlockProps } from '../../types/types';
 import { AccordionSection, AccordionInfo, AccordionDate, Button } from './AccordionBlock.styles';
@@ -10,6 +10,7 @@ export const AccordionBlock: FC<AccordionBlockProps> = ({
   characterCreated
 }) => {
   let date = new Date(characterCreated).toString();
+
   return (
     <AccordionSection
       open={characterId === selectedId ? false : true}
@@ -26,3 +27,5 @@ export const AccordionBlock: FC<AccordionBlockProps> = ({
     </AccordionSection>
   );
 };
+
+export default memo(AccordionBlock);

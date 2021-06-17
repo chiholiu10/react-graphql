@@ -1,13 +1,12 @@
-import React from 'react';
+import { App } from './App';
+import { Provider } from 'react-redux';
+import { Router } from "react-router-dom";
+import { applyMiddleware, createStore } from 'redux';
 import ReactDOM from 'react-dom';
 import episodes from './reducers';
 import thunk from "redux-thunk";
 import reportWebVitals from './reportWebVitals';
-import { App } from './App';
-import { Provider } from 'react-redux';
-import { Router } from "react-router-dom";
 import history from "./history";
-import { applyMiddleware, createStore } from 'redux';
 
 const store = createStore(
   episodes,
@@ -15,13 +14,11 @@ const store = createStore(
 );
 
 ReactDOM.render(
-  <React.StrictMode>
-    <Provider store={store}>
-      <Router history={history}>
-        <App />
-      </Router>
-    </Provider>
-  </React.StrictMode>,
+  <Provider store={store}>
+    <Router history={history}>
+      <App />
+    </Router>
+  </Provider>,
   document.getElementById('root')
 );
 
