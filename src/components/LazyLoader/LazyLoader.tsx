@@ -10,7 +10,7 @@ export const LazyLoader: FC<LazyLoaderProps> = ({ src, alt }) => {
       let observer = new IntersectionObserver(
         (entries) => {
           entries.forEach((entry) => {
-            if (entry.intersectionRatio > -1.0) {
+            if (entry.intersectionRatio > 0) {
               ref?.current?.setAttribute('src', src);
               ref?.current?.setAttribute('alt', alt);
               observer.unobserve(ref.current!);

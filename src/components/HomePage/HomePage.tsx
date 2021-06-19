@@ -46,7 +46,6 @@ export const HomePage: FC<HomePageProps & StateProps> = ({ characterData, loaded
       window.removeEventListener("scroll", handleScollTab);
     };
 
-
   }, [handleScollTab]);
 
   let filterResult = characterData.filter((character: { name: string; }) => {
