@@ -1,18 +1,19 @@
 import { FC, useRef, useEffect } from "react";
 import { LazyLoaderProps } from '../../types/types';
+import { CharacterImage } from './LazyLoader.styles';
 
 export const LazyLoader: FC<LazyLoaderProps> = ({ src, alt }) => {
-  const ref = useRef(null);
-  const io = useRef(null);
+  const ref = useRef<any>(null);
 
   useEffect(() => {
     if (ref.current) {
-      io.current = new IntersectionObserver(
+      let observer = new IntersectionObserver(
         (entries) => {
           entries.forEach((entry) => {
-            if (entry.intersectionRatio > 0.5) {
-              ref.current.src = src;
-              io.current.unobserve(ref.current);
+            if (entry.intersectionRatio > -1.0) {
+              ref?.current?.setAttribute('src', src);
+              ref?.current?.setAttribute('alt', alt);
+              observer.unobserve(ref.current!);
             }
           });
         },
@@ -21,13 +22,9 @@ export const LazyLoader: FC<LazyLoaderProps> = ({ src, alt }) => {
         }
       );
 
-      io.current.observe(ref.current);
+      observer.observe(ref.current!);
     }
-
-    return () => {
-      io.current.unobserve(ref.current);
-    };
   }, [ref]);
 
-  return <img ref={ref} srcalt={alt} />;
+  return <CharacterImage ref={ref} />;
 };

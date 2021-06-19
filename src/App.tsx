@@ -9,27 +9,25 @@ import { getData } from "./actions/index";
 import { Route, Switch } from "react-router-dom";
 import history from "./history";
 import theme from "./styles/Themes";
-import axios from "axios";
 
 export const App: FC = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get(
-          "https://rickandmortyapi.com/api/character"
-        );
-        dispatch(getData(response.data.results));
-
-      } catch (error) {
+    fetch("https://rickandmortyapi.com/api/character")
+      .then(response => {
+        if (response.ok) {
+          return response.json();
+        }
         history.push({
           pathname: '/404'
         });
-      }
-    };
-    fetchData();
-  }, [dispatch]);
+        throw response;
+      })
+      .then(data => {
+        dispatch(getData(data.results));
+      });
+  }, []);
 
   return (
     <ThemeProvider theme={theme}>

@@ -2,13 +2,6 @@ import styled from 'styled-components';
 import { breakpoint } from "../../styles/BreakPoint";
 import theme from '../../styles/Themes';
 
-export const CharacterImage = styled.img`
-  width: 100%;
-  max-width: default;
-  height: 250px;
-  object-fit: cover; 
-`;
-
 export const CharacterHeading = styled.h2`
   font-size: 20px;
   padding: 1.2rem 1rem 0.7rem 1rem;

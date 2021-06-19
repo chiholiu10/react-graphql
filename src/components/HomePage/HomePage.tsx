@@ -10,7 +10,6 @@ import { AccordionBlock } from '../AccordionBlock/AccordionBlock';
 import { LazyLoader } from '../LazyLoader/LazyLoader';
 import { StateProps } from '../../types/types';
 import {
-  // CharacterImage,
   CharacterHeading,
   EpisodeContainer,
   EpisodeBlock

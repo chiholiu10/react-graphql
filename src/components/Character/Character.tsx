@@ -16,7 +16,6 @@ import {
 } from './Character.styles';
 import { Loading } from '../Loading/Loading';
 import history from "../../history";
-import axios from "axios";
 import { StateProps } from "../../types/types";
 
 export const Character: FC<CharacterPageProps> = ({ characterDetails }) => {
@@ -24,19 +23,19 @@ export const Character: FC<CharacterPageProps> = ({ characterDetails }) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get(
-          `https://rickandmortyapi.com/api/character/${id}`
-        );
-        dispatch(getEpisode(response.data));
-      } catch (error) {
+    fetch(`https://rickandmortyapi.com/api/character/${id}`)
+      .then(response => {
+        if (response.ok) {
+          return response.json();
+        }
         history.push({
           pathname: '/404'
         });
-      }
-    };
-    fetchData();
+        throw response;
+      })
+      .then(response => {
+        dispatch(getEpisode(response.data));
+      });
   }, []);
 
   const previousPage = () => history.back();
